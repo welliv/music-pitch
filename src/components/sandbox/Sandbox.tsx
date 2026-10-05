@@ -799,37 +799,38 @@ export function Sandbox() {
                         "A buyer agent discovers the 402 endpoint, pays, and unlocks authorized access for its principal."}
                     </p>
 
-                    {scenario !== "agent" && (
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <DoorCard
-                          title="TIDAL"
-                          subtitle="Store client"
-                          state={apps.tidal}
-                          active={activeApp === "tidal"}
-                          busy={busy}
-                          payDisabled={realPayBlocked}
-                          live={realMode && liveReady}
-                          stripeReady={stripeReady}
-                          stripeLabel={realMode ? `Pay ${PRICE_STRIPE_LABEL} (card)` : `Pay ${PRICE_STRIPE_LABEL} (test card)`}
-                          onPay={() => runPayFlow("tidal")}
-                          onStripe={() => runStripeCheckout("tidal")}
-                          onPlay={() => playSong("tidal")}
-                        />
-                        <DoorCard
-                          title="The other app"
-                          subtitle="Second store"
-                          state={apps.other}
-                          active={activeApp === "other"}
-                          busy={busy}
-                          payDisabled={realPayBlocked}
-                          live={realMode && liveReady}
-                          stripeReady={stripeReady}
-                          stripeLabel={realMode ? `Pay ${PRICE_STRIPE_LABEL} (card)` : `Pay ${PRICE_STRIPE_LABEL} (test card)`}
-                          onPay={() => runPayFlow("other")}
-                          onStripe={() => runStripeCheckout("other")}
-                          onPlay={() => playSong("other")}
-                        />
-                      </div>
+                    {scenario === "tidal" && (
+                      <DoorCard
+                        title="TIDAL"
+                        subtitle="Store client"
+                        state={apps.tidal}
+                        active
+                        busy={busy}
+                        payDisabled={realPayBlocked}
+                        live={realMode && liveReady}
+                        stripeReady={stripeReady}
+                        stripeLabel={realMode ? `Pay ${PRICE_STRIPE_LABEL} (card)` : `Pay ${PRICE_STRIPE_LABEL} (test card)`}
+                        onPay={() => runPayFlow("tidal")}
+                        onStripe={() => runStripeCheckout("tidal")}
+                        onPlay={() => playSong("tidal")}
+                      />
+                    )}
+
+                    {scenario === "other" && (
+                      <DoorCard
+                        title="The other app"
+                        subtitle="Second store"
+                        state={apps.other}
+                        active
+                        busy={busy}
+                        payDisabled={realPayBlocked}
+                        live={realMode && liveReady}
+                        stripeReady={stripeReady}
+                        stripeLabel={realMode ? `Pay ${PRICE_STRIPE_LABEL} (card)` : `Pay ${PRICE_STRIPE_LABEL} (test card)`}
+                        onPay={() => runPayFlow("other")}
+                        onStripe={() => runStripeCheckout("other")}
+                        onPlay={() => playSong("other")}
+                      />
                     )}
 
                     {scenario === "agent" && (
