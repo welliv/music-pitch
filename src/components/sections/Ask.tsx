@@ -1,7 +1,7 @@
 import { Cta67 } from "@/components/relume/Cta67";
 import { asset } from "@/lib/utils";
 
-/** Four cinematic stills only — sparse Ask, not wallpaper density. */
+/** Four original generative stills — sparse Ask, not wallpaper density. */
 const STILLS = [
   "art/marquee-1.webp",
   "art/marquee-2.webp",

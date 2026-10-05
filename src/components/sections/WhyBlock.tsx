@@ -8,25 +8,25 @@ const rails = [
     title: "Wallets people already use",
     body: "Cash App and Square put bitcoin and Lightning in everyday commerce — the settlement layer music micropayments need.",
     image: "art/why-wallets.webp",
-    alt: "Abstract wallet surface for everyday bitcoin commerce",
+    alt: "Edge-lit glass card with an etched lightning mark",
   },
   {
     title: "Agent-ready payments",
     body: "x402 puts payment into HTTP with the 402 status code. Stores and agents hit a pay link like an API, and Lightning settles it — fans never operate the chain.",
     image: "art/why-x402.webp",
-    alt: "Abstract HTTP 402 pay-link panel",
+    alt: "A 402 gate: requests arrive blue and leave settled green",
   },
   {
     title: "Nostr in the mission",
     body: "Artist-owned identity and signed catalog align with open protocols Block has already invested in.",
     image: "art/why-nostr.webp",
-    alt: "Abstract Nostr relay constellation",
+    alt: "Relay constellation with a signed note rippling outward",
   },
   {
     title: "Square Lightning (honest facts)",
     body: "Sellers can settle in BTC or USD. 0% fees until Dec 31, 2026, then 1%. Not available in New York.",
     image: "art/why-lightning.webp",
-    alt: "Abstract Lightning bolt over a commerce card",
+    alt: "Electric-green lightning striking a dark horizon",
   },
 ];
 
@@ -54,7 +54,7 @@ export function WhyBlock() {
         >
           <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden md:aspect-auto md:w-[42%]">
             <img
-              src={asset("art/why-x402.webp")}
+              src={asset("art/why-x402-lightning.webp")}
               alt=""
               className="size-full object-cover opacity-90"
             />

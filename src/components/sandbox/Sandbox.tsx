@@ -553,7 +553,7 @@ export function Sandbox() {
         <div className="relative mb-10 overflow-hidden rounded-3xl border border-white/[0.08] bg-ink shadow-soft md:mb-12">
           <img
             src={asset("art/sandbox.webp")}
-            alt="Abstract multi-app sandbox panels settling the same pay link"
+            alt="Three app panels streaming payments into the same pay link"
             className="aspect-[24/7] w-full object-cover opacity-95"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/30" />

@@ -13,7 +13,7 @@ export function ThreeToOne() {
         tagline: "Rail 01",
         image: {
           src: asset("art/rail-bitcoin.webp"),
-          alt: "Abstract Bitcoin and Lightning settlement rails",
+          alt: "Lightning channels as perspective light rails racing to one settlement point",
         },
         icon: Bitcoin,
         heading: "Bitcoin & Lightning",
@@ -24,7 +24,7 @@ export function ThreeToOne() {
         tagline: "Rail 02",
         image: {
           src: asset("art/rail-nostr.webp"),
-          alt: "Abstract Nostr identity and artist-owned keys",
+          alt: "Pubkey sigil with relays orbiting — artist-owned Nostr identity",
         },
         icon: Fingerprint,
         heading: "Nostr identity",
@@ -39,7 +39,7 @@ export function ThreeToOne() {
             "Machines that can discover a pay link, settle x402 over Lightning, and unlock access — the same path a music store uses.",
           image: {
             src: asset("art/rail-agent.webp"),
-            alt: "Abstract agent payment mesh settling a pay link",
+            alt: "Agent mesh with lit routes settling into one pay link",
           },
         },
         {
@@ -49,7 +49,7 @@ export function ThreeToOne() {
             "Publish once, price the link, let stores and agents pay per play — on rails Block already owns.",
           image: {
             src: asset("art/rail-music.webp"),
-            alt: "Abstract music waveform and playback node",
+            alt: "Silk-like waveform ribbon shifting from violet to green",
           },
         },
       ]}

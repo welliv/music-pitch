@@ -12,7 +12,7 @@ const steps = [
     body: "TIDAL Music Agent creates or manages Nostr keys — identity the artist controls.",
     image: {
       src: asset("art/how-01-keys.webp"),
-      alt: "Abstract Nostr key rings for artist identity",
+      alt: "Radial key sigil drawn from a hash — artist-owned Nostr identity",
     },
   },
   {
@@ -24,7 +24,7 @@ const steps = [
     body: "Tracks land on a TIDAL Nostr music marketplace, encrypted to the artist’s key.",
     image: {
       src: asset("art/how-02-catalog.webp"),
-      alt: "Abstract encrypted catalog shelves",
+      alt: "Isometric field of encrypted catalog tiles, a few published",
     },
   },
   {
@@ -36,7 +36,7 @@ const steps = [
     body: "The catalog sits behind an x402 / L402 paywall at a price the artist sets — here, 21 sats.",
     image: {
       src: asset("art/how-03-paylink.webp"),
-      alt: "Abstract 402 pay link card",
+      alt: "Two interlocked links joined by a lightning spark — the 402 pay link",
     },
   },
   {
@@ -48,7 +48,7 @@ const steps = [
     body: "TIDAL, another app, or an autonomous agent pays the link for each play or short lease.",
     image: {
       src: asset("art/how-04-stores.webp"),
-      alt: "Abstract stores and agents paying into one settlement node",
+      alt: "Many payment streams converging into one settlement node",
     },
   },
   {
@@ -60,7 +60,7 @@ const steps = [
     body: "No wallet UI, no keys, no file chore — authorized access settles behind the glass.",
     image: {
       src: asset("art/how-05-play.webp"),
-      alt: "Abstract play control over a music waveform",
+      alt: "Play glyph of light with a waveform and ripples",
     },
   },
 ];

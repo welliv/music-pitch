@@ -37,3 +37,7 @@ sk_live*
 sk_test*
 rk_live*
 rk_test*
+
+# Python
+__pycache__/
+*.pyc
