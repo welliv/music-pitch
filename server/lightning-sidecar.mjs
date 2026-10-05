@@ -2,7 +2,7 @@
  * Local pay sidecar for the TIDAL Music Agent pitch (Real bitcoin + Stripe card).
  *
  * Secrets (env ONLY — never disk, never logs, never dist, never VITE_*):
- *   NWC_CONNECTION_STRING, STRIPE_SECRET_KEY_TEST, STRIPE_SECRET_KEY_LIVE
+ *   NWC_CONNECTION_STRING, STRIPE_SECRET_KEY_TEST, STRIPE_SECRET_KEY_LIVE, LIGHTNING_ADDRESS (optional, agent auto-pay)
  *
  * - Binds to 127.0.0.1:4174. Vite proxies /api → here (same-origin).
  * - GitHub Pages has no /api → static build stays address-only / no card checkout.
@@ -36,7 +36,8 @@ const HOST = process.env.SIDECAR_HOST || "127.0.0.1";
 const PORT = Number(process.env.SIDECAR_PORT || 4174);
 const PRICE_SATS = 21;
 const PRICE_STRIPE_CENTS = 50; // Stripe card minimum — optional card fallback
-const LIGHTNING_ADDRESS = "tidalagent@getalby.com";
+/** Artist receive for agent auto-pay only. Set LIGHTNING_ADDRESS in env — never baked into the static site. Neutral default (no TIDAL brand). */
+const LIGHTNING_ADDRESS = (process.env.LIGHTNING_ADDRESS || "").trim();
 const INVOICE_EXPIRY_S = 600;
 const LEASE_S = 15 * 60; // pay-per-play / short lease, not a forever unlock
 const FEE_RESERVE_SATS = 10;
@@ -288,7 +289,7 @@ async function health(force = false) {
   value = {
     ...value,
     priceSats: PRICE_SATS,
-    address: LIGHTNING_ADDRESS,
+    // Never echo Lightning address to the browser — public Pages / logs must not see it.
     stripe: {
       test: stripeConfigured("test"),
       live: stripeConfigured("live"),
@@ -355,6 +356,9 @@ async function agentPay(app, song) {
   const h = await health(true);
   if (!h.canSpend) throw publicError("The agent wallet cannot spend right now (top it up to enable auto-pay).", 409);
 
+  if (!LIGHTNING_ADDRESS || !LIGHTNING_ADDRESS.includes("@")) {
+    throw publicError("Artist Lightning address is not configured on the sidecar (set LIGHTNING_ADDRESS).", 503);
+  }
   const ln = new LightningAddress(LIGHTNING_ADDRESS);
   await withTimeout(ln.fetch(), 10_000, "lnurl");
   const inv = await withTimeout(

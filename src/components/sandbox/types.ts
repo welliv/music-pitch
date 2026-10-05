@@ -30,6 +30,6 @@ export const PRICE_STRIPE_LABEL = "$0.50";
 export const SONG_ID = "2025-flow-3";
 export const SONG_TITLE = "2025 Flow 3";
 export const SONG_URL = asset("songs/2025-flow-3.mp3");
-/** Receive address for the local sidecar (agent auto-pay). Not shown on the public build. */
-export const LIGHTNING_ADDRESS = "tidalagent@getalby.com";
+/** On-page credit for the public demo track. */
+export const SONG_CREDIT = "Demo audio: 2025 Flow 3 — owned by welliv";
 export const PAY_LINK = "https://music.example/x402/2025-flow-3";

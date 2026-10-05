@@ -10,7 +10,7 @@ const ABSTRACTS = [
   "art/marquee-6.webp",
 ];
 
-/** Relume Cta67 marquee CTA */
+/** Relume Cta67 marquee CTA — proof-first CTAs, no personal GitHub seek. */
 export function Ask() {
   return (
     <Cta67
@@ -31,8 +31,8 @@ export function Ask() {
         href: "https://github.com/welliv/nostr-commerce-skill",
       }}
       secondary={{
-        title: "GitHub · welliv",
-        href: "https://github.com/welliv",
+        title: "Play the demo",
+        href: "#demo",
         variant: "secondary",
       }}
       images={Array.from({ length: 24 }, (_, i) => ({

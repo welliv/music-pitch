@@ -4,7 +4,7 @@ import { asset } from "@/lib/utils";
 const JACK_URL =
   "https://damus.io/note1pgt2e5n4qeadre4ggpp8laz78fljx8k9tq70j3qg3fwjxp3v9aqs94dz7n";
 
-/** Inspiration section: long-form copy + editorial art + CTAs. */
+/** Inspiration: Jack's note themes only — strategy/leapfrog lives in Why Block. */
 export function Inspiration() {
   return (
     <section
@@ -15,7 +15,7 @@ export function Inspiration() {
         <div>
           <p className="section-label">Inspiration</p>
           <h2 className="display-title mb-8 text-[2rem] md:text-h2 lg:text-[3rem]">
-            A Music Agent worth switching for
+            Themes from lists of three
           </h2>
 
           <div className="space-y-5 body-lg">
@@ -36,37 +36,16 @@ export function Inspiration() {
               micropayments, and a highly connected app ecosystem.
             </p>
             <p>
-              This concept takes two of those use cases literally, agent
-              transaction and creator-friendly distribution, and builds on all
+              This concept takes two of those use cases literally — agent
+              transaction and creator-friendly distribution — and builds on all
               three differentiators. The note is inspiration only, not an
               endorsement of this pitch.
             </p>
           </div>
 
-          <div className="mt-12 border-t border-white/[0.08] pt-10 md:mt-14 md:pt-12">
-            <p className="mb-4 text-small font-medium tracking-[-0.01em] text-mist">
-              The bar for an open protocol
-            </p>
-            <div className="space-y-5 body-lg">
-              <p>
-                On an open protocol, any client can be spun up tomorrow.
-                Incremental copies of web2 music products will not cut through
-                existing network effects. A new product has to deliver roughly
-                ten times more value: new, integrated, and fundamentally better in
-                an artist’s or listener’s life.
-              </p>
-              <p>
-                That is the bar this concept aims for. A Music Agent on Block’s
-                existing rails, where agents can license and settle, bitcoin and
-                Lightning carry the micropayments, and Nostr holds artist-owned
-                identity. TIDAL and other apps become clients of an
-                artist-controlled pay link, not owners of a separate platform.
-              </p>
-            </div>
-          </div>
-
           <p className="mt-8 text-small text-ink-mute">
-            Proposed concept — not an official TIDAL or Block product.
+            Proposed concept — not an official TIDAL or Block product. Strategy
+            for open-protocol products is covered separately under Why Block.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-3 md:mt-12">

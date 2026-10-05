@@ -2,7 +2,7 @@
  * Browser client for the local pay sidecar (server/lightning-sidecar.mjs).
  * Talks only to same-origin /api (Vite proxies it locally). No secrets here:
  * NWC + Stripe secret keys never leave the sidecar process.
- * On GitHub Pages /api does not exist → health reports offline → address-only.
+ * On GitHub Pages /api does not exist → health reports offline → Real settle unavailable (Demo only).
  */
 
 export type StripeHealth = {

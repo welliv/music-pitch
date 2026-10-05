@@ -100,6 +100,33 @@ export function WhyBlock() {
             </div>
           ))}
         </div>
+
+        <div
+          id="open-protocol-bar"
+          className="mt-12 rounded-3xl border border-white/[0.08] bg-ink-soft p-7 md:mt-14 md:p-9"
+        >
+          <p className="text-tiny font-medium uppercase tracking-[0.12em] text-mist-dim">
+            Open-protocol bar
+          </p>
+          <h3 className="mt-3 text-h5 text-mist md:text-h4">
+            On an open protocol, incremental copies of web2 will not cut through
+          </h3>
+          <div className="mt-4 max-w-prose space-y-4 text-small leading-relaxed text-mist-dim">
+            <p>
+              Any client can be spun up tomorrow. A new product has to deliver
+              roughly ten times more value: new, integrated, and fundamentally
+              better in an artist’s or listener’s life — not a clone of an
+              existing music app.
+            </p>
+            <p>
+              That is the bar this concept aims for: a Music Agent on Block’s
+              existing rails, where agents can license and settle, bitcoin and
+              Lightning carry the micropayments, and Nostr holds artist-owned
+              identity. TIDAL and other apps become clients of an
+              artist-controlled pay link, not owners of a separate platform.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

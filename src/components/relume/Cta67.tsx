@@ -99,13 +99,23 @@ export function Cta67(props: Cta67Props) {
       <div className="relative z-10 flex flex-col items-center justify-center gap-3 px-[5%] pb-10 pt-6 md:pb-12 md:pt-8">
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Button asChild className="min-h-12 px-8 text-[1rem]">
-            <a href={primary.href} target="_blank" rel="noreferrer">
+            <a
+              href={primary.href}
+              {...(primary.href.startsWith("http")
+                ? { target: "_blank", rel: "noreferrer" }
+                : {})}
+            >
               {primary.title}
             </a>
           </Button>
           {secondary ? (
             <Button variant="secondary" asChild className="min-h-12 px-8 text-[1rem]">
-              <a href={secondary.href} target="_blank" rel="noreferrer">
+              <a
+                href={secondary.href}
+                {...(secondary.href.startsWith("http")
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
+              >
                 {secondary.title}
               </a>
             </Button>
@@ -163,7 +173,7 @@ const ABSTRACTS = [
 export const Cta67Defaults: Props = {
   heading: "Medium length heading goes here",
   description: "Description",
-  primary: { title: "GitHub · welliv", href: "https://github.com/welliv" },
+  primary: { title: "Commerce skill", href: "https://github.com/welliv/nostr-commerce-skill" },
   images: Array.from({ length: 24 }, (_, i) => ({
     src: asset(ABSTRACTS[i % ABSTRACTS.length]),
     alt: "",

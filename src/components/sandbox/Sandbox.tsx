@@ -22,10 +22,10 @@ import {
   type LogEntry,
   type LogKind,
   type ScenarioId,
-  LIGHTNING_ADDRESS,
   PAY_LINK,
   PRICE_SATS,
   PRICE_STRIPE_LABEL,
+  SONG_CREDIT,
   SONG_ID,
   SONG_TITLE,
   SONG_URL,
@@ -450,7 +450,7 @@ export function Sandbox() {
     busyRef.current = true;
     setBusy(true);
     try {
-      pushLog("req", `GET ${LIGHTNING_ADDRESS} → LNURL invoice`, `${PRICE_SATS} sats`);
+      pushLog("req", "GET LNURL invoice (artist receive)", `${PRICE_SATS} sats`);
       pushLog("pay", "Buyer agent pays via its NWC wallet (live)", `${PRICE_SATS} sats`);
       const r = await agentPay("agent", SONG_ID);
       pushLog(
@@ -566,10 +566,10 @@ export function Sandbox() {
           </h2>
           <p className="body-lg max-w-prose">
             Walk the agent publish path, then pay as TIDAL, another app, or a
-            buyer agent. Demo simulates the L402 flow. Real mode settles{" "}
-            {PRICE_SATS} sats over Lightning on a local build with a pay server;
-            an optional card fallback (Stripe, {PRICE_STRIPE_LABEL} minimum)
-            runs there too.
+            buyer agent. This public page runs <strong className="font-medium text-mist">Demo</strong>{" "}
+            (simulated L402). Real Lightning ({PRICE_SATS} sats) and optional
+            Stripe ({PRICE_STRIPE_LABEL}) settle only on a local build with a
+            pay sidecar — never on GitHub Pages.
           </p>
         </div>
 
@@ -598,7 +598,7 @@ export function Sandbox() {
                 void refreshSidecar(true);
               }}
             >
-              Real bitcoin
+              Real (local)
             </button>
           </div>
           <span className="chip">{statusLine}</span>
@@ -645,18 +645,21 @@ export function Sandbox() {
         {realMode && !liveReady && !stripeLiveReady && (
           <div className="mb-6 rounded-2xl border border-amber-500/25 bg-amber-500/[0.06] px-5 py-4 text-small leading-relaxed text-mist-dim">
             <strong className="font-medium text-mist">
-              {sidecar.checking ? "Checking for live pay…" : "Real mode is address-only here."}
+              {sidecar.checking
+                ? "Checking for local pay sidecar…"
+                : "Real pay is not available on this public URL."}
             </strong>{" "}
             {!sidecar.checking && (
               <>
-                Live pay runs only on a local build with a pay server. This
-                public page is the simulated flow.{" "}
+                GitHub Pages is static — no NWC or Stripe secrets, no live
+                invoices. Real Lightning and card checkout run only on a local
+                build with a pay sidecar.{" "}
                 <button
                   type="button"
                   className="text-mist underline underline-offset-4 hover:opacity-90"
                   onClick={() => void refreshSidecar(true)}
                 >
-                  Retry
+                  Retry local sidecar
                 </button>{" "}
                 ·{" "}
                 <button
@@ -666,7 +669,7 @@ export function Sandbox() {
                 >
                   Switch to Demo
                 </button>{" "}
-                to walk the simulated L402 flow.
+                for the simulated L402 walkthrough.
               </>
             )}
           </div>
@@ -841,7 +844,7 @@ export function Sandbox() {
                               Agent auto-pay
                             </div>
                             <div className="mt-0.5 text-tiny text-ink-mute">
-                              The agent’s own NWC wallet pays the artist’s Lightning address — no human scan.
+                              The agent’s own NWC wallet settles the invoice — no human scan.
                             </div>
                           </div>
                           <Button
@@ -991,19 +994,13 @@ export function Sandbox() {
         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-tiny text-ink-mute">
           <span className="inline-flex items-center gap-1.5">
             <Wallet className="size-3.5 opacity-70" strokeWidth={1.5} /> Demo =
-            simulated L402 · Real (local build) = Lightning {PRICE_SATS} sats,
-            optional Stripe card fallback at {PRICE_STRIPE_LABEL}
+            simulated L402 on this page · Real settle = local sidecar only
+            (Lightning {PRICE_SATS} sats, optional Stripe {PRICE_STRIPE_LABEL})
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <Music2 className="size-3.5 opacity-70" strokeWidth={1.5} /> Song:{" "}
-            {SONG_TITLE}
+            <Music2 className="size-3.5 opacity-70" strokeWidth={1.5} />{" "}
+            {SONG_CREDIT}
           </span>
-          {realMode && liveReady && (
-            <span className="inline-flex items-center gap-1.5">
-              <Sparkles className="size-3.5 opacity-70" strokeWidth={1.5} />{" "}
-              Artist receive address (demo): {LIGHTNING_ADDRESS}
-            </span>
-          )}
         </div>
       </div>
     </section>
