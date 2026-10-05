@@ -1,4 +1,5 @@
-import { asset } from "@/lib/utils";
+import { Unlock } from "lucide-react";
+import { IconSurface } from "@/components/ui/icon-surface";
 
 export function Problem() {
   return (
@@ -14,12 +15,13 @@ export function Problem() {
           clients of that link. Listeners stay in a normal music app.
         </p>
         <div className="relative mx-auto mt-12 max-w-3xl overflow-hidden rounded-3xl border border-white/[0.08] shadow-soft">
-          <img
-            src={asset("art/problem.webp")}
-            alt="Locked platform silos unlocking into an artist-controlled pay link"
-            className="aspect-[2.5/1] w-full object-cover"
+          <IconSurface
+            icon={Unlock}
+            accent="accent"
+            aspect="wide"
+            label="Unlock → artist pay link"
+            className="min-h-[10rem] md:min-h-[12rem]"
           />
-          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
         </div>
         <p className="mx-auto mt-8 max-w-prose text-small text-ink-mute">
           This model applies where the artist (or rights holder) controls the

@@ -2,30 +2,27 @@ import * as React from "react";
 /**
  * Relume Layout 381 (slug: section_layout381) — dark Apple-token adaptation.
  * Asymmetric bento: featured big card + small card + feature cards.
- * Duplicate bigCard from Relume defaults removed; buttons optional.
+ * Decorative slots use lucide IconSurface panels (no photography).
  */
 import type { LucideIcon } from "lucide-react";
+import { Zap } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { asset, cn } from "@/lib/utils";
-
-type ImageProps = {
-  src: string;
-  alt?: string;
-};
+import { IconSurface, type IconAccent } from "@/components/ui/icon-surface";
+import { cn } from "@/lib/utils";
 
 type FeatureSection = {
   heading: string;
   description: string;
-  icon?: LucideIcon;
-  image?: ImageProps;
+  icon: LucideIcon;
+  accent?: IconAccent;
 };
 
 type BaseCard = {
   tagline: string;
-  image: ImageProps;
   heading: string;
   description: string;
-  icon?: LucideIcon;
+  icon: LucideIcon;
+  accent?: IconAccent;
 };
 
 type Props = {
@@ -39,7 +36,8 @@ type Props = {
   className?: string;
 };
 
-export type Layout381Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
+export type Layout381Props = React.ComponentPropsWithoutRef<"section"> &
+  Partial<Props>;
 
 export function Layout381(props: Layout381Props) {
   const {
@@ -78,7 +76,7 @@ export function Layout381(props: Layout381Props) {
           </div>
           <div className="grid auto-cols-fr grid-cols-1 gap-6 md:gap-8">
             {featureSections.map((feature) => (
-              <FeatureSection key={feature.heading} {...feature} />
+              <FeatureSectionCard key={feature.heading} {...feature} />
             ))}
           </div>
         </div>
@@ -91,28 +89,25 @@ export function Layout381(props: Layout381Props) {
 
 function BigCard(card: BaseCard) {
   const Icon = card.icon;
+  const accent = card.accent ?? "lightning";
   return (
     <Card className="flex flex-col overflow-hidden">
-      <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink">
-        <img
-          src={card.image.src}
-          alt={card.image.alt ?? ""}
-          className="size-full object-cover"
-        />
-      </div>
+      <IconSurface icon={Icon} accent={accent} aspect="video" />
       <div className="flex flex-1 flex-col justify-center p-6 md:p-8 lg:p-10">
         <p className="mb-2 text-micro font-medium uppercase tracking-[0.14em] text-ink-mute">
           {card.tagline}
         </p>
         <div className="mb-3 flex items-center gap-3">
-          {Icon ? (
-            <span className="flex size-10 items-center justify-center rounded-2xl border border-white/[0.08] bg-ink shadow-soft">
-              <Icon className="size-5 text-mist" strokeWidth={1.4} />
-            </span>
-          ) : null}
-          <h3 className="display-title text-h4 text-mist md:text-h3">{card.heading}</h3>
+          <span className="flex size-10 items-center justify-center rounded-2xl border border-white/[0.08] bg-ink shadow-soft">
+            <Icon className="size-5 text-mist" strokeWidth={1.4} />
+          </span>
+          <h3 className="display-title text-h4 text-mist md:text-h3">
+            {card.heading}
+          </h3>
         </div>
-        <p className="body-md text-[1.025rem] leading-relaxed">{card.description}</p>
+        <p className="body-md text-[1.025rem] leading-relaxed">
+          {card.description}
+        </p>
       </div>
     </Card>
   );
@@ -120,53 +115,46 @@ function BigCard(card: BaseCard) {
 
 function SmallCard(card: BaseCard) {
   const Icon = card.icon;
+  const accent = card.accent ?? "nostr";
   return (
     <Card className="flex flex-col overflow-hidden sm:grid sm:auto-cols-fr sm:grid-cols-2">
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink sm:aspect-auto sm:min-h-[11rem]">
-        <img
-          src={card.image.src}
-          alt={card.image.alt ?? ""}
-          className="size-full object-cover"
-        />
-      </div>
+      <IconSurface
+        icon={Icon}
+        accent={accent}
+        aspect="auto"
+        compact
+        className="aspect-[4/3] sm:aspect-auto sm:min-h-[11rem]"
+      />
       <div className="flex flex-col justify-center p-6 md:p-7">
         <p className="mb-2 text-micro font-medium uppercase tracking-[0.14em] text-ink-mute">
           {card.tagline}
         </p>
         <div className="mb-2 flex items-center gap-2.5">
-          {Icon ? (
-            <Icon className="size-4 text-mist" strokeWidth={1.4} />
-          ) : null}
+          <Icon className="size-4 text-mist" strokeWidth={1.4} />
           <h3 className="text-h5 text-mist">{card.heading}</h3>
         </div>
-        <p className="body-md text-[1.025rem] leading-relaxed">{card.description}</p>
+        <p className="body-md text-[1.025rem] leading-relaxed">
+          {card.description}
+        </p>
       </div>
     </Card>
   );
 }
 
-function FeatureSection(feature: FeatureSection) {
+function FeatureSectionCard(feature: FeatureSection) {
   const Icon = feature.icon;
+  const accent = feature.accent ?? "accent";
   return (
     <Card className="flex flex-col overflow-hidden">
-      {feature.image ? (
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink">
-          <img
-            src={feature.image.src}
-            alt={feature.image.alt ?? ""}
-            className="size-full object-cover"
-          />
-          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
-        </div>
-      ) : null}
+      <IconSurface icon={Icon} accent={accent} aspect="wide" />
       <div className="flex flex-1 flex-col justify-center p-6 md:p-8 lg:p-8">
-        {Icon ? (
-          <div className="mb-5 flex size-12 items-center justify-center rounded-2xl border border-white/[0.08] bg-ink shadow-soft">
-            <Icon className="size-5 text-mist" strokeWidth={1.4} />
-          </div>
-        ) : null}
+        <div className="mb-5 flex size-12 items-center justify-center rounded-2xl border border-white/[0.08] bg-ink shadow-soft">
+          <Icon className="size-5 text-mist" strokeWidth={1.4} />
+        </div>
         <h3 className="mb-3 text-h5 text-mist">{feature.heading}</h3>
-        <p className="body-md text-[1.025rem] leading-relaxed">{feature.description}</p>
+        <p className="body-md text-[1.025rem] leading-relaxed">
+          {feature.description}
+        </p>
       </div>
     </Card>
   );
@@ -178,15 +166,15 @@ export const Layout381Defaults: Props = {
   description: "Description",
   smallCard: {
     tagline: "Tagline",
-    image: { src: asset("art/rail-nostr.webp"), alt: "" },
     heading: "Heading",
     description: "Description",
+    icon: Zap,
   },
   bigCard: {
     tagline: "Tagline",
-    image: { src: asset("art/rail-bitcoin.webp"), alt: "" },
     heading: "Heading",
     description: "Description",
+    icon: Zap,
   },
   featureSections: [],
 };

@@ -1,21 +1,23 @@
 import * as React from "react";
 /**
  * Relume CTA 67 (slug: section_cta67) — dark Apple-token adaptation.
- * Dual marquee of abstract media + CTAs. No partner logos.
- * Marquee is clipped (no document horizontal scroll); CTAs stack above images.
+ * Sparse icon row instead of heavy image marquee. No partner logos.
  */
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { asset, cn } from "@/lib/utils";
-
-type ImageProps = {
-  src: string;
-  alt?: string;
-};
+import { type IconAccent } from "@/components/ui/icon-surface";
+import { cn } from "@/lib/utils";
 
 type LinkButton = {
   title: string;
   href: string;
   variant?: "default" | "secondary";
+};
+
+type IconMark = {
+  icon: LucideIcon;
+  accent?: IconAccent;
+  label: string;
 };
 
 type Props = {
@@ -27,24 +29,19 @@ type Props = {
   primary: LinkButton;
   secondary?: LinkButton;
   footnote?: string;
-  images: ImageProps[];
+  icons?: IconMark[];
   className?: string;
 };
 
-export type Cta67Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
+export type Cta67Props = React.ComponentPropsWithoutRef<"section"> &
+  Partial<Props>;
 
-function ImageItem({ image }: { image: ImageProps }) {
-  return (
-    <div className="relative w-[70vw] pt-[68%] sm:w-[20rem] md:w-[28rem] lg:w-[32rem]">
-      <img
-        className="absolute inset-0 size-full rounded-image object-cover opacity-90"
-        src={image.src}
-        alt={image.alt ?? ""}
-      />
-      <div className="pointer-events-none absolute inset-0 rounded-image ring-1 ring-inset ring-white/[0.06]" />
-    </div>
-  );
-}
+const accentIcon: Record<IconAccent, string> = {
+  accent: "text-accent",
+  lightning: "text-emerald-400",
+  nostr: "text-violet-400",
+  mist: "text-mist",
+};
 
 export function Cta67(props: Cta67Props) {
   const {
@@ -56,7 +53,7 @@ export function Cta67(props: Cta67Props) {
     primary,
     secondary,
     footnote,
-    images,
+    icons = [],
     className,
     id,
     ...rest
@@ -64,11 +61,6 @@ export function Cta67(props: Cta67Props) {
     ...Cta67Defaults,
     ...props,
   };
-
-  const rowA = images.slice(0, 6);
-  const rowADup = images.slice(6, 12);
-  const rowB = images.slice(12, 18);
-  const rowBDup = images.slice(18, 24);
 
   return (
     <section
@@ -95,7 +87,6 @@ export function Cta67(props: Cta67Props) {
         </div>
       </div>
 
-      {/* CTAs stack clearly above the marquee — no sticky overlay on image cards */}
       <div className="relative z-10 flex flex-col items-center justify-center gap-3 px-[5%] pb-10 pt-6 md:pb-12 md:pt-8">
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Button asChild className="min-h-12 px-8 text-[1rem]">
@@ -109,7 +100,11 @@ export function Cta67(props: Cta67Props) {
             </a>
           </Button>
           {secondary ? (
-            <Button variant="secondary" asChild className="min-h-12 px-8 text-[1rem]">
+            <Button
+              variant="secondary"
+              asChild
+              className="min-h-12 px-8 text-[1rem]"
+            >
               <a
                 href={secondary.href}
                 {...(secondary.href.startsWith("http")
@@ -126,56 +121,42 @@ export function Cta67(props: Cta67Props) {
         ) : null}
       </div>
 
-      {/* Marquee: full-bleed visually, clipped so it never creates page x-scroll */}
-      <div className="overflow-hidden pb-20 pt-2 md:pb-28 md:pt-4 lg:pb-32">
-        <div className="flex w-full justify-start">
-          <div className="mb-0 grid shrink-0 grid-cols-1 gap-y-4">
-            <div className="grid w-max max-w-none animate-marquee-top auto-cols-fr grid-cols-2 gap-4 self-center">
-              <div className="grid w-max grid-flow-col gap-4">
-                {rowA.map((image, index) => (
-                  <ImageItem key={`a-${index}`} image={image} />
-                ))}
+      {icons.length > 0 ? (
+        <div className="mx-auto flex max-w-content flex-wrap items-center justify-center gap-3 px-[5%] pb-20 md:gap-4 md:pb-28 lg:pb-32">
+          {icons.map((mark) => {
+            const Icon = mark.icon;
+            const accent = mark.accent ?? "mist";
+            return (
+              <div
+                key={mark.label}
+                className="flex min-w-[6.5rem] flex-col items-center gap-2.5 rounded-2xl border border-white/[0.08] bg-ink/60 px-4 py-4 shadow-soft md:min-w-[7.5rem] md:px-5 md:py-5"
+              >
+                <span className="flex size-11 items-center justify-center rounded-xl border border-white/[0.08] bg-ink-soft">
+                  <Icon
+                    className={cn("size-5", accentIcon[accent])}
+                    strokeWidth={1.4}
+                  />
+                </span>
+                <span className="text-center text-micro font-medium uppercase tracking-[0.12em] text-mist-dim">
+                  {mark.label}
+                </span>
               </div>
-              <div className="grid w-max grid-flow-col gap-4">
-                {rowADup.map((image, index) => (
-                  <ImageItem key={`ad-${index}`} image={image} />
-                ))}
-              </div>
-            </div>
-            <div className="grid w-max max-w-none animate-marquee-bottom grid-cols-2 gap-4 self-center">
-              <div className="grid w-max grid-flow-col gap-4">
-                {rowB.map((image, index) => (
-                  <ImageItem key={`b-${index}`} image={image} />
-                ))}
-              </div>
-              <div className="grid w-max grid-flow-col gap-4">
-                {rowBDup.map((image, index) => (
-                  <ImageItem key={`bd-${index}`} image={image} />
-                ))}
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
-      </div>
+      ) : (
+        <div className="pb-16 md:pb-20" />
+      )}
     </section>
   );
 }
 
-const ABSTRACTS = [
-  "art/marquee-1.webp",
-  "art/marquee-2.webp",
-  "art/marquee-3.webp",
-  "art/marquee-4.webp",
-  "art/marquee-5.webp",
-  "art/marquee-6.webp",
-];
-
 export const Cta67Defaults: Props = {
   heading: "Medium length heading goes here",
   description: "Description",
-  primary: { title: "Commerce skill", href: "https://github.com/welliv/nostr-commerce-skill" },
-  images: Array.from({ length: 24 }, (_, i) => ({
-    src: asset(ABSTRACTS[i % ABSTRACTS.length]),
-    alt: "",
-  })),
+  primary: {
+    title: "Commerce skill",
+    href: "https://github.com/welliv/nostr-commerce-skill",
+  },
+  icons: [],
 };

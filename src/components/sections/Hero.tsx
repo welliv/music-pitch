@@ -1,27 +1,33 @@
+import { Zap, Fingerprint, Music2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { asset } from "@/lib/utils";
 
-/** Full-viewport cinematic hero — sparse copy over one original generative still (lightning strike → waveform). */
+/** Typography-first hero — sparse lucide marks instead of full-bleed art. */
 export function Hero() {
   return (
     <section
       id="top"
       className="relative isolate flex min-h-[88vh] items-center overflow-hidden px-[5%] pb-28 pt-32 md:min-h-[92vh] md:pb-36 md:pt-40 lg:pb-44"
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <img
-          src={asset("art/hero.webp")}
-          alt=""
-          className="size-full object-cover object-[88%_35%] opacity-50 md:object-[center_35%] md:opacity-95"
-        />
-        {/* Dissolve into black — terafab / cinematic-media pattern */}
-        {/* The art is already pitch-black; keep overlays light so the strike reads. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_48%_38%_at_50%_44%,rgba(0,0,0,0.55),transparent_70%)]" />
-        <div className="absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-black/60 to-transparent" />
-      </div>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_40%_at_50%_30%,rgba(41,151,255,0.08),transparent_70%)]"
+      />
 
       <div className="relative mx-auto w-full max-w-narrow text-center animate-fade-up">
+        <div className="mb-8 flex items-center justify-center gap-2.5 md:mb-10">
+          {[
+            { Icon: Zap, accent: "text-emerald-400", ring: "ring-emerald-400/25" },
+            { Icon: Fingerprint, accent: "text-violet-400", ring: "ring-violet-400/25" },
+            { Icon: Music2, accent: "text-accent", ring: "ring-accent/20" },
+          ].map(({ Icon, accent, ring }, i) => (
+            <span
+              key={i}
+              className={`flex size-11 items-center justify-center rounded-2xl border border-white/[0.08] bg-ink-soft shadow-soft ring-1 ${ring} md:size-12`}
+            >
+              <Icon className={`size-5 ${accent}`} strokeWidth={1.35} />
+            </span>
+          ))}
+        </div>
         <p className="section-label mb-5">A pitch concept for Block + TIDAL</p>
         <h1 className="display-title mb-7 text-[2.75rem] leading-[1.05] sm:text-[3.5rem] md:text-[4rem] lg:text-[4.25rem]">
           TIDAL Music Agent on Block’s existing rails

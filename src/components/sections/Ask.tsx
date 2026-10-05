@@ -1,15 +1,7 @@
+import { Zap, Fingerprint, Bot, Music2, Link2, Wallet } from "lucide-react";
 import { Cta67 } from "@/components/relume/Cta67";
-import { asset } from "@/lib/utils";
 
-/** Four original generative stills — sparse Ask, not wallpaper density. */
-const STILLS = [
-  "art/marquee-1.webp",
-  "art/marquee-2.webp",
-  "art/marquee-3.webp",
-  "art/marquee-4.webp",
-];
-
-/** Relume Cta67 — proof-first CTAs over a short premium still strip. */
+/** Sparse Explore CTA — thematic lucide marks instead of image marquee. */
 export function Ask() {
   return (
     <Cta67
@@ -34,10 +26,14 @@ export function Ask() {
         href: "#demo",
         variant: "secondary",
       }}
-      images={Array.from({ length: 16 }, (_, i) => ({
-        src: asset(STILLS[i % STILLS.length]),
-        alt: "",
-      }))}
+      icons={[
+        { icon: Zap, accent: "lightning", label: "Lightning" },
+        { icon: Fingerprint, accent: "nostr", label: "Nostr" },
+        { icon: Link2, accent: "accent", label: "x402" },
+        { icon: Bot, accent: "accent", label: "Agents" },
+        { icon: Wallet, accent: "mist", label: "Wallets" },
+        { icon: Music2, accent: "mist", label: "Music" },
+      ]}
     />
   );
 }

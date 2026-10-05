@@ -34,7 +34,7 @@ Same path whether the payer is a store or an autonomous agent.
 Static Vite + React + TypeScript + Tailwind site with:
 
 - Dark full-bleed pitch (hero, problem, three-rails bento, tabbed how-it-works, Why Block, inspiration, interactive sandbox, soft ask)  
-- Original generative section art (Lightning, Nostr, agents, catalog, pay link), rendered by `scripts/art/`. See `IMAGE-LICENSES.md`  
+- Sparse lucide-react monoline icons (Lightning / Nostr / agent / music accents) via `IconSurface` panels — no stock photos. See `IMAGE-LICENSES.md`  
 - Interactive sandbox demo track: **2025 Flow 3** (`public/songs/2025-flow-3.mp3`) — demo audio owned by welliv  
 
 ### Demo only on GitHub Pages

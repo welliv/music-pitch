@@ -7,6 +7,7 @@ import {
   CreditCard,
   ExternalLink,
   Loader2,
+  Link2,
   Zap,
   KeyRound,
   Music2,
@@ -30,7 +31,6 @@ import {
   SONG_TITLE,
   SONG_URL,
 } from "./types";
-import { asset } from "@/lib/utils";
 import {
   type SidecarHealth,
   agentPay,
@@ -561,12 +561,21 @@ export function Sandbox() {
     >
       <div className="mx-auto max-w-content">
         <div className="relative mb-10 overflow-hidden rounded-3xl border border-white/[0.08] bg-ink shadow-soft md:mb-12">
-          <img
-            src={asset("art/sandbox.webp")}
-            alt="Three app panels streaming payments into the same pay link"
-            className="aspect-[24/7] w-full object-cover opacity-95"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/30" />
+          <div className="flex aspect-[24/7] min-h-[5.5rem] items-center justify-center gap-3 bg-[radial-gradient(ellipse_50%_60%_at_50%_50%,rgba(41,151,255,0.12),transparent_70%)] px-4 md:gap-5 md:min-h-[7rem]">
+            {[
+              { Icon: KeyRound, accent: "text-violet-400", ring: "ring-violet-400/25" },
+              { Icon: Link2, accent: "text-accent", ring: "ring-accent/20" },
+              { Icon: Zap, accent: "text-emerald-400", ring: "ring-emerald-400/25" },
+              { Icon: Music2, accent: "text-mist", ring: "ring-white/10" },
+            ].map(({ Icon, accent, ring }, i) => (
+              <span
+                key={i}
+                className={`flex size-10 items-center justify-center rounded-2xl border border-white/[0.08] bg-ink-soft shadow-soft ring-1 ${ring} md:size-14`}
+              >
+                <Icon className={`size-4 md:size-6 ${accent}`} strokeWidth={1.35} />
+              </span>
+            ))}
+          </div>
           <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
         </div>
         <div className="mb-12 max-w-2xl md:mb-14">

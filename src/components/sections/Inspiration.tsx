@@ -1,8 +1,14 @@
+import { Fingerprint, Zap, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { asset } from "@/lib/utils";
 
 const JACK_URL =
   "https://damus.io/note1pgt2e5n4qeadre4ggpp8laz78fljx8k9tq70j3qg3fwjxp3v9aqs94dz7n";
+
+const pillars = [
+  { icon: Fingerprint, label: "Identity", accent: "text-violet-400", ring: "ring-violet-400/25" },
+  { icon: Zap, label: "Micropayments", accent: "text-emerald-400", ring: "ring-emerald-400/25" },
+  { icon: Share2, label: "Connected apps", accent: "text-accent", ring: "ring-accent/20" },
+] as const;
 
 /** Inspiration: Jack's note themes only — strategy/leapfrog lives in Why Block. */
 export function Inspiration() {
@@ -67,16 +73,29 @@ export function Inspiration() {
         </div>
 
         <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-ink shadow-soft lg:sticky lg:top-28">
-          <img
-            src={asset("art/inspiration.webp")}
-            alt="Abstract three pillars — identity, micropayments, connected apps"
-            className="aspect-[7/9] w-full object-cover md:aspect-[4/5]"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          <div className="flex min-h-[22rem] flex-col items-center justify-center gap-6 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,rgba(41,151,255,0.1),transparent_70%)] px-6 py-10 md:min-h-[26rem]">
+            <div className="flex w-full max-w-xs flex-col gap-3">
+              {pillars.map(({ icon: Icon, label, accent, ring }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-ink-soft/90 px-4 py-3.5 shadow-soft"
+                >
+                  <span
+                    className={`flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-ink ring-1 ${ring}`}
+                  >
+                    <Icon className={`size-5 ${accent}`} strokeWidth={1.35} />
+                  </span>
+                  <span className="text-small font-medium tracking-[-0.01em] text-mist">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p className="text-tiny font-medium uppercase tracking-[0.14em] text-mist-dim">
+              Identity · micropayments · connected apps
+            </p>
+          </div>
           <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
-          <p className="absolute bottom-5 left-5 right-5 text-tiny font-medium uppercase tracking-[0.14em] text-mist-dim">
-            Identity · micropayments · connected apps
-          </p>
         </div>
       </div>
     </section>

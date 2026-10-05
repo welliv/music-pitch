@@ -1,32 +1,40 @@
-import { asset } from "@/lib/utils";
+import { Wallet, Link2, Fingerprint, Zap } from "lucide-react";
+import { IconSurface } from "@/components/ui/icon-surface";
+import type { IconAccent } from "@/components/ui/icon-surface";
+import type { LucideIcon } from "lucide-react";
 
 const X402_POST =
   "https://block.xyz/inside/block-joins-the-x402-foundation-to-advance-open-agentic-commerce";
 
-const rails = [
+const rails: {
+  title: string;
+  body: string;
+  icon: LucideIcon;
+  accent: IconAccent;
+}[] = [
   {
     title: "Wallets people already use",
     body: "Cash App and Square put bitcoin and Lightning in everyday commerce — the settlement layer music micropayments need.",
-    image: "art/why-wallets.webp",
-    alt: "Edge-lit glass card with an etched lightning mark",
+    icon: Wallet,
+    accent: "accent",
   },
   {
     title: "Agent-ready payments",
     body: "x402 puts payment into HTTP with the 402 status code. Stores and agents hit a pay link like an API, and Lightning settles it — fans never operate the chain.",
-    image: "art/why-x402.webp",
-    alt: "A 402 gate: requests arrive blue and leave settled green",
+    icon: Link2,
+    accent: "accent",
   },
   {
     title: "Nostr in the mission",
     body: "Artist-owned identity and signed catalog align with open protocols Block has already invested in.",
-    image: "art/why-nostr.webp",
-    alt: "Relay constellation with a signed note rippling outward",
+    icon: Fingerprint,
+    accent: "nostr",
   },
   {
     title: "Square Lightning (honest facts)",
     body: "Sellers can settle in BTC or USD. 0% fees until Dec 31, 2026, then 1%. Not available in New York.",
-    image: "art/why-lightning.webp",
-    alt: "Electric-green lightning striking a dark horizon",
+    icon: Zap,
+    accent: "lightning",
   },
 ];
 
@@ -50,15 +58,15 @@ export function WhyBlock() {
           href={X402_POST}
           target="_blank"
           rel="noreferrer"
-          className="group mb-3 flex flex-col gap-4 overflow-hidden rounded-3xl border border-accent/25 bg-accent/[0.06] transition-colors duration-calm hover:border-accent/40 md:mb-4 md:flex-row md:items-stretch"
+          className="group mb-3 flex flex-col gap-0 overflow-hidden rounded-3xl border border-accent/25 bg-accent/[0.06] transition-colors duration-calm hover:border-accent/40 md:mb-4 md:flex-row md:items-stretch"
         >
-          <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden md:aspect-auto md:w-[42%]">
-            <img
-              src={asset("art/why-x402-lightning.webp")}
-              alt=""
-              className="size-full object-cover opacity-90"
+          <div className="relative w-full shrink-0 overflow-hidden md:w-[38%]">
+            <IconSurface
+              icon={Zap}
+              accent="lightning"
+              aspect="video"
+              className="md:aspect-auto md:h-full md:min-h-[14rem]"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-black/40 max-md:bg-gradient-to-t" />
           </div>
           <div className="flex flex-1 flex-col justify-center p-6 md:p-7">
             <p className="text-tiny font-medium uppercase tracking-[0.12em] text-accent">
@@ -83,14 +91,7 @@ export function WhyBlock() {
         <div className="grid gap-3 md:grid-cols-2 md:gap-4">
           {rails.map((r) => (
             <div key={r.title} className="surface-card overflow-hidden">
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink">
-                <img
-                  src={asset(r.image)}
-                  alt={r.alt}
-                  className="size-full object-cover"
-                />
-                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
-              </div>
+              <IconSurface icon={r.icon} accent={r.accent} aspect="video" />
               <div className="p-6 md:p-7">
                 <h3 className="text-h6 text-mist">{r.title}</h3>
                 <p className="mt-2.5 text-small leading-relaxed text-mist-dim">
