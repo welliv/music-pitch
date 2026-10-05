@@ -11,19 +11,22 @@ import { Footer } from "@/components/sections/Footer";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-scheme-background text-scheme-text antialiased">
-      <Navbar />
-      <main>
-        <Hero />
-        <ThreeToOne />
-        <Problem />
-        <HowItWorks />
-        <Sandbox />
-        <WhyBlock />
-        <Inspiration />
-        <Ask />
-      </main>
-      <Footer />
+    <div className="brand-canvas">
+      <div className="brand-lightning" aria-hidden />
+      <div className="brand-content">
+        <Navbar />
+        <main>
+          <Hero />
+          <ThreeToOne />
+          <Problem />
+          <HowItWorks />
+          <Sandbox />
+          <WhyBlock />
+          <Inspiration />
+          <Ask />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -1,21 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { asset } from "@/lib/utils";
 
-/** Relume Header23 shell — cinematic dark hero (terafab-style full-bleed art) */
+/** Full-viewport cinematic hero — sparse copy over a single still (terafab pattern). */
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden px-[5%] pb-24 pt-28 md:pb-32 md:pt-36 lg:pb-40 lg:pt-40"
+      className="relative isolate flex min-h-[88vh] items-center overflow-hidden px-[5%] pb-28 pt-32 md:min-h-[92vh] md:pb-36 md:pt-40 lg:pb-44"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <img
           src={asset("art/hero.webp")}
           alt=""
-          className="size-full object-cover object-center opacity-90"
+          className="size-full object-cover object-[center_35%] opacity-95"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/70 to-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(41,151,255,0.14),transparent_55%)]" />
+        {/* Dissolve into black — terafab / cinematic-media pattern */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/55 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
+        <div className="absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-black/70 to-transparent" />
+        <div className="absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-black/70 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_20%,rgba(41,151,255,0.10),transparent_55%)]" />
       </div>
 
       <div className="relative mx-auto w-full max-w-narrow text-center animate-fade-up">

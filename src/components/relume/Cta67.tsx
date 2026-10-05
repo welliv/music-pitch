@@ -35,7 +35,7 @@ export type Cta67Props = React.ComponentPropsWithoutRef<"section"> & Partial<Pro
 
 function ImageItem({ image }: { image: ImageProps }) {
   return (
-    <div className="relative w-[60vw] pt-[75%] sm:w-[18rem] md:w-[24rem]">
+    <div className="relative w-[70vw] pt-[68%] sm:w-[20rem] md:w-[28rem] lg:w-[32rem]">
       <img
         className="absolute inset-0 size-full rounded-image object-cover opacity-90"
         src={image.src}

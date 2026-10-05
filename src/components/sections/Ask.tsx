@@ -1,16 +1,15 @@
 import { Cta67 } from "@/components/relume/Cta67";
 import { asset } from "@/lib/utils";
 
-const ABSTRACTS = [
+/** Four cinematic stills only — sparse Ask, not wallpaper density. */
+const STILLS = [
   "art/marquee-1.webp",
   "art/marquee-2.webp",
   "art/marquee-3.webp",
   "art/marquee-4.webp",
-  "art/marquee-5.webp",
-  "art/marquee-6.webp",
 ];
 
-/** Relume Cta67 marquee CTA — proof-first CTAs, no personal GitHub seek. */
+/** Relume Cta67 — proof-first CTAs over a short premium still strip. */
 export function Ask() {
   return (
     <Cta67
@@ -35,8 +34,8 @@ export function Ask() {
         href: "#demo",
         variant: "secondary",
       }}
-      images={Array.from({ length: 24 }, (_, i) => ({
-        src: asset(ABSTRACTS[i % ABSTRACTS.length]),
+      images={Array.from({ length: 16 }, (_, i) => ({
+        src: asset(STILLS[i % STILLS.length]),
         alt: "",
       }))}
     />
