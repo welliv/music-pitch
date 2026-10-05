@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+<rect width="800" height="600" fill="#111113"/>
+<path d="M0 420C160 320 280 500 420 380C560 260 680 340 800 220V600H0V420Z" fill="url(#g)" opacity="0.55"/>
+<defs><linearGradient id="g" x1="0" y1="200" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2997ff"/><stop offset="1" stop-color="#64d2ff" stop-opacity="0.2"/>
+</linearGradient></defs></svg>

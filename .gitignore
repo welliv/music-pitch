@@ -1,0 +1,39 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Secrets — NWC + Stripe keys live only in the shell env, never in the repo
+.env
+.env.*
+!.env.example
+NWC*
+*.nwc
+*nwc-secret*
+STRIPE*
+*stripe*secret*
+*stripe*key*
+sk_live*
+sk_test*
+rk_live*
+rk_test*

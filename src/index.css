@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    background: #000000;
+    color: #f5f5f7;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-optical-sizing: auto;
+    font-feature-settings: "ss01" on, "cv11" on;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(41, 151, 255, 0.28);
+    color: #f5f5f7;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(41, 151, 255, 0.7);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .section-pad {
+    @apply px-[5%] py-20 md:py-28 lg:py-32;
+  }
+
+  .section-label {
+    @apply mb-4 text-micro font-medium uppercase tracking-[0.14em] text-ink-mute;
+  }
+
+  .display-title {
+    @apply font-display font-normal tracking-[-0.02em] text-mist;
+  }
+
+  .body-lg {
+    @apply text-medium text-mist-dim;
+  }
+
+  .body-md {
+    @apply text-regular text-mist-dim;
+  }
+
+  .hairline {
+    @apply border-white/[0.08];
+  }
+
+  .surface-card {
+    @apply rounded-card border border-white/[0.08] bg-ink-soft shadow-soft;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-badge border border-white/[0.1] bg-white/[0.04] px-2.5 py-1 text-tiny text-mist-dim;
+  }
+
+  .chip-ok {
+    @apply border-emerald-500/25 bg-emerald-500/[0.08] text-emerald-300;
+  }
+
+  .chip-warn {
+    @apply border-amber-500/25 bg-amber-500/[0.08] text-amber-200;
+  }
+}
+
