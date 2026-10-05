@@ -1,5 +1,6 @@
 import { KeyRound, Library, Link2, Store, Play } from "lucide-react";
 import { Layout506 } from "@/components/relume/Layout506";
+import { asset } from "@/lib/utils";
 
 const steps = [
   {
@@ -9,6 +10,10 @@ const steps = [
     icon: KeyRound,
     title: "Artist opens the agent",
     body: "TIDAL Music Agent creates or manages Nostr keys — identity the artist controls.",
+    image: {
+      src: asset("art/how-01-keys.webp"),
+      alt: "Abstract Nostr key rings for artist identity",
+    },
   },
   {
     value: "step-02",
@@ -17,6 +22,10 @@ const steps = [
     icon: Library,
     title: "Publish encrypted catalog",
     body: "Tracks land on a TIDAL Nostr music marketplace, encrypted to the artist’s key.",
+    image: {
+      src: asset("art/how-02-catalog.webp"),
+      alt: "Abstract encrypted catalog shelves",
+    },
   },
   {
     value: "step-03",
@@ -25,6 +34,10 @@ const steps = [
     icon: Link2,
     title: "Price a 402 pay link",
     body: "The catalog sits behind an x402 / L402 paywall at a price the artist sets — here, 21 sats.",
+    image: {
+      src: asset("art/how-03-paylink.webp"),
+      alt: "Abstract 402 pay link card",
+    },
   },
   {
     value: "step-04",
@@ -33,6 +46,10 @@ const steps = [
     icon: Store,
     title: "Stores and agents pay",
     body: "TIDAL, another app, or an autonomous agent pays the link for each play or short lease.",
+    image: {
+      src: asset("art/how-04-stores.webp"),
+      alt: "Abstract stores and agents paying into one settlement node",
+    },
   },
   {
     value: "step-05",
@@ -41,6 +58,10 @@ const steps = [
     icon: Play,
     title: "Fan just hits play",
     body: "No wallet UI, no keys, no file chore — authorized access settles behind the glass.",
+    image: {
+      src: asset("art/how-05-play.webp"),
+      alt: "Abstract play control over a music waveform",
+    },
   },
 ];
 
@@ -60,6 +81,7 @@ export function HowItWorks() {
           icon: step.icon,
           heading: step.title,
           description: step.body,
+          image: step.image,
         },
       }))}
     />

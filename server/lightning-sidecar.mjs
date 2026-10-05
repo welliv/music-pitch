@@ -42,11 +42,11 @@ const LEASE_S = 15 * 60; // pay-per-play / short lease, not a forever unlock
 const FEE_RESERVE_SATS = 10;
 const MAX_AGENT_PAYS_PER_HOUR = Number(process.env.SIDECAR_MAX_AGENT_PAYS_PER_HOUR || 5);
 const FRONTEND_ORIGIN = (process.env.FRONTEND_ORIGIN || "http://127.0.0.1:4173").replace(/\/$/, "");
-const STRIPE_PRODUCT_NAME = "Music Agent demo · Soul Hymn unlock";
+const STRIPE_PRODUCT_NAME = "Music Agent demo · 2025 Flow 3 unlock";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SONGS = {
-  "soul-hymn": { title: "Soul Hymn", file: path.join(rootDir, "public/songs/soul-hymn.mp3") },
+  "2025-flow-3": { title: "2025 Flow 3", file: path.join(rootDir, "public/songs/2025-flow-3.mp3") },
 };
 const APPS = new Set(["tidal", "other", "agent"]);
 
@@ -397,7 +397,7 @@ function readJson(req, limit = 4096) {
   });
 }
 function pickApp(v) { return APPS.has(v) ? v : "tidal"; }
-function pickSong(v) { return SONGS[v] ? v : "soul-hymn"; }
+function pickSong(v) { return SONGS[v] ? v : "2025-flow-3"; }
 
 function streamSong(req, res, song) {
   const file = SONGS[song].file;

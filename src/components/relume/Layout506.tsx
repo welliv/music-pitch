@@ -8,11 +8,17 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
+type ImageProps = {
+  src: string;
+  alt?: string;
+};
+
 type Feature = {
   heading: string;
   description: string;
   icon?: LucideIcon;
   meta?: string;
+  image?: ImageProps;
 };
 
 type Tab = {
@@ -94,23 +100,36 @@ export function Layout506(props: Layout506Props) {
 function FeatureCard({ tab }: { tab: Tab }) {
   const Icon = tab.content.icon;
   return (
-    <div className="flex h-full min-h-[16rem] flex-col justify-center p-6 md:p-10 lg:p-14">
-      {tab.content.meta ? (
-        <span className="mb-4 font-mono text-micro font-medium text-accent">
-          {tab.content.meta}
-        </span>
-      ) : null}
-      {Icon ? (
-        <div className="mb-5 flex size-12 items-center justify-center rounded-2xl border border-white/[0.08] bg-ink shadow-soft md:mb-6">
-          <Icon className="size-5 text-mist" strokeWidth={1.4} />
+    <div className="flex h-full min-h-[16rem] flex-col">
+      {tab.content.image ? (
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink md:aspect-[16/10]">
+          <img
+            src={tab.content.image.src}
+            alt={tab.content.image.alt ?? ""}
+            className="size-full object-cover"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-soft/80 via-transparent to-transparent" />
+          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
         </div>
       ) : null}
-      <h3 className="display-title mb-4 text-h4 text-mist md:mb-5 md:text-h3">
-        {tab.content.heading}
-      </h3>
-      <p className="body-md max-w-prose text-[1.0625rem] leading-relaxed">
-        {tab.content.description}
-      </p>
+      <div className="flex flex-1 flex-col justify-center p-6 md:p-10 lg:p-12">
+        {tab.content.meta ? (
+          <span className="mb-4 font-mono text-micro font-medium text-accent">
+            {tab.content.meta}
+          </span>
+        ) : null}
+        {Icon ? (
+          <div className="mb-5 flex size-12 items-center justify-center rounded-2xl border border-white/[0.08] bg-ink shadow-soft md:mb-6">
+            <Icon className="size-5 text-mist" strokeWidth={1.4} />
+          </div>
+        ) : null}
+        <h3 className="display-title mb-4 text-h4 text-mist md:mb-5 md:text-h3">
+          {tab.content.heading}
+        </h3>
+        <p className="body-md max-w-prose text-[1.0625rem] leading-relaxed">
+          {tab.content.description}
+        </p>
+      </div>
     </div>
   );
 }

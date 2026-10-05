@@ -17,6 +17,7 @@ type FeatureSection = {
   heading: string;
   description: string;
   icon?: LucideIcon;
+  image?: ImageProps;
 };
 
 type BaseCard = {
@@ -147,8 +148,18 @@ function SmallCard(card: BaseCard) {
 function FeatureSection(feature: FeatureSection) {
   const Icon = feature.icon;
   return (
-    <Card className="flex flex-col justify-between p-6 md:p-8 lg:p-8">
-      <div>
+    <Card className="flex flex-col overflow-hidden">
+      {feature.image ? (
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink">
+          <img
+            src={feature.image.src}
+            alt={feature.image.alt ?? ""}
+            className="size-full object-cover"
+          />
+          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
+        </div>
+      ) : null}
+      <div className="flex flex-1 flex-col justify-center p-6 md:p-8 lg:p-8">
         {Icon ? (
           <div className="mb-5 flex size-12 items-center justify-center rounded-2xl border border-white/[0.08] bg-ink shadow-soft">
             <Icon className="size-5 text-mist" strokeWidth={1.4} />
@@ -167,13 +178,13 @@ export const Layout381Defaults: Props = {
   description: "Description",
   smallCard: {
     tagline: "Tagline",
-    image: { src: asset("abstract/bento-portrait.svg"), alt: "" },
+    image: { src: asset("art/rail-nostr.webp"), alt: "" },
     heading: "Heading",
     description: "Description",
   },
   bigCard: {
     tagline: "Tagline",
-    image: { src: asset("abstract/bento-wide.svg"), alt: "" },
+    image: { src: asset("art/rail-bitcoin.webp"), alt: "" },
     heading: "Heading",
     description: "Description",
   },

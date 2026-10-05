@@ -30,6 +30,7 @@ import {
   SONG_TITLE,
   SONG_URL,
 } from "./types";
+import { asset } from "@/lib/utils";
 import {
   type SidecarHealth,
   agentPay,
@@ -549,6 +550,15 @@ export function Sandbox() {
       className="section-pad scroll-mt-20 border-t border-white/[0.06]"
     >
       <div className="mx-auto max-w-content">
+        <div className="relative mb-10 overflow-hidden rounded-3xl border border-white/[0.08] bg-ink shadow-soft md:mb-12">
+          <img
+            src={asset("art/sandbox.webp")}
+            alt="Abstract multi-app sandbox panels settling the same pay link"
+            className="aspect-[24/7] w-full object-cover opacity-95"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/30" />
+          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
+        </div>
         <div className="mb-12 max-w-2xl md:mb-14">
           <p className="section-label">Interactive sandbox</p>
           <h2 className="display-title mb-5 text-[2rem] md:text-h2 lg:text-[3rem]">

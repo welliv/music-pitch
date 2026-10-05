@@ -1,3 +1,5 @@
+import { asset } from "@/lib/utils";
+
 export function Problem() {
   return (
     <section className="border-t border-white/[0.06] bg-ink-soft px-[5%] py-20 md:py-28">
@@ -11,7 +13,15 @@ export function Problem() {
           Move access to an artist-controlled pay link. Apps and agents become
           clients of that link. Listeners stay in a normal music app.
         </p>
-        <p className="mx-auto mt-6 max-w-prose text-small text-ink-mute">
+        <div className="relative mx-auto mt-12 max-w-3xl overflow-hidden rounded-3xl border border-white/[0.08] shadow-soft">
+          <img
+            src={asset("art/problem.webp")}
+            alt="Locked platform silos unlocking into an artist-controlled pay link"
+            className="aspect-[2.5/1] w-full object-cover"
+          />
+          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
+        </div>
+        <p className="mx-auto mt-8 max-w-prose text-small text-ink-mute">
           This model applies where the artist (or rights holder) controls the
           recording — not a claim to rewrite every label deal overnight.
         </p>

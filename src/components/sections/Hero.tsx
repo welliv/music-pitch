@@ -1,16 +1,23 @@
 import { Button } from "@/components/ui/button";
+import { asset } from "@/lib/utils";
 
-/** Relume Header23 shell — dark retheme, pitch copy */
+/** Relume Header23 shell — cinematic dark hero (terafab-style full-bleed art) */
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden px-[5%] pb-24 pt-24 md:pb-32 md:pt-32 lg:pb-40 lg:pt-36"
+      className="relative isolate overflow-hidden px-[5%] pb-24 pt-28 md:pb-32 md:pt-36 lg:pb-40 lg:pt-40"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(41,151,255,0.12),transparent_55%)]"
-      />
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <img
+          src={asset("art/hero.webp")}
+          alt=""
+          className="size-full object-cover object-center opacity-90"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/70 to-black" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(41,151,255,0.14),transparent_55%)]" />
+      </div>
+
       <div className="relative mx-auto w-full max-w-narrow text-center animate-fade-up">
         <p className="section-label mb-5">A pitch concept for Block + TIDAL</p>
         <h1 className="display-title mb-7 text-[2.75rem] leading-[1.05] sm:text-[3.5rem] md:text-[4rem] lg:text-[4.25rem]">

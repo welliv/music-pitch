@@ -2,12 +2,12 @@ import { Cta67 } from "@/components/relume/Cta67";
 import { asset } from "@/lib/utils";
 
 const ABSTRACTS = [
-  "/abstract/a1.svg",
-  "/abstract/a2.svg",
-  "/abstract/a3.svg",
-  "/abstract/a4.svg",
-  "/abstract/a5.svg",
-  "/abstract/a6.svg",
+  "art/marquee-1.webp",
+  "art/marquee-2.webp",
+  "art/marquee-3.webp",
+  "art/marquee-4.webp",
+  "art/marquee-5.webp",
+  "art/marquee-6.webp",
 ];
 
 /** Relume Cta67 marquee CTA */

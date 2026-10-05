@@ -1,4 +1,4 @@
-import { Bitcoin, Fingerprint, Bot } from "lucide-react";
+import { Bitcoin, Fingerprint, Bot, Music2 } from "lucide-react";
 import { Layout381 } from "@/components/relume/Layout381";
 import { asset } from "@/lib/utils";
 
@@ -12,8 +12,8 @@ export function ThreeToOne() {
       bigCard={{
         tagline: "Rail 01",
         image: {
-          src: asset("abstract/bento-wide.svg"),
-          alt: "Abstract gradient — Bitcoin and Lightning rails",
+          src: asset("art/rail-bitcoin.webp"),
+          alt: "Abstract Bitcoin and Lightning settlement rails",
         },
         icon: Bitcoin,
         heading: "Bitcoin & Lightning",
@@ -23,8 +23,8 @@ export function ThreeToOne() {
       smallCard={{
         tagline: "Rail 02",
         image: {
-          src: asset("abstract/bento-portrait.svg"),
-          alt: "Abstract gradient — Nostr identity",
+          src: asset("art/rail-nostr.webp"),
+          alt: "Abstract Nostr identity and artist-owned keys",
         },
         icon: Fingerprint,
         heading: "Nostr identity",
@@ -37,11 +37,20 @@ export function ThreeToOne() {
           heading: "Agent payments",
           description:
             "Machines that can discover a pay link, settle x402 over Lightning, and unlock access — the same path a music store uses.",
+          image: {
+            src: asset("art/rail-agent.webp"),
+            alt: "Abstract agent payment mesh settling a pay link",
+          },
         },
         {
+          icon: Music2,
           heading: "One agent",
           description:
             "Publish once, price the link, let stores and agents pay per play — on rails Block already owns.",
+          image: {
+            src: asset("art/rail-music.webp"),
+            alt: "Abstract music waveform and playback node",
+          },
         },
       ]}
       footerNote={

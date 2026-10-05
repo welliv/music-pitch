@@ -27,9 +27,9 @@ export const PRICE_SATS = 21;
 /** Stripe card minimum — optional card path, separate from Lightning. */
 export const PRICE_STRIPE_CENTS = 50;
 export const PRICE_STRIPE_LABEL = "$0.50";
-export const SONG_ID = "soul-hymn";
-export const SONG_TITLE = "Soul Hymn";
-export const SONG_URL = asset("songs/soul-hymn.mp3");
+export const SONG_ID = "2025-flow-3";
+export const SONG_TITLE = "2025 Flow 3";
+export const SONG_URL = asset("songs/2025-flow-3.mp3");
 /** Receive address for the local sidecar (agent auto-pay). Not shown on the public build. */
 export const LIGHTNING_ADDRESS = "tidalagent@getalby.com";
-export const PAY_LINK = "https://music.example/x402/soul-hymn";
+export const PAY_LINK = "https://music.example/x402/2025-flow-3";
