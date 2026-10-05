@@ -33,7 +33,18 @@ export function Footer() {
           </p>
         </div>
         <div className="text-tiny text-ink-mute md:text-right">
-          <p>© {YEAR} · Pitch draft</p>
+          <p>
+            Concept draft by{" "}
+            <a
+              className="text-mist-dim underline-offset-4 transition-colors hover:text-mist hover:underline"
+              href="https://github.com/welliv"
+              target="_blank"
+              rel="noreferrer"
+            >
+              welliv
+            </a>
+          </p>
+          <p className="mt-1.5">© {YEAR} · Pitch draft</p>
         </div>
       </div>
     </footer>
