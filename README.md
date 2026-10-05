@@ -37,14 +37,11 @@ Static Vite + React + TypeScript + Tailwind site with:
 - Original generative section art (Lightning, Nostr, agents, catalog, pay link), rendered by `scripts/art/`. See `IMAGE-LICENSES.md`  
 - Interactive sandbox demo track: **2025 Flow 3** (`public/songs/2025-flow-3.mp3`) — demo audio owned by welliv  
 
-### Demo (GitHub Pages) vs Real (local)
+### Demo only on GitHub Pages
 
-| Mode | Where | What happens |
-|------|--------|----------------|
-| **Demo** | [Pages](https://welliv.github.io/music-pitch/) and local | Simulated L402 walkthrough. Safe for a public static host. Optional Stripe **test** $0.50 only if a local sidecar is running with a test secret. |
-| **Real** | Local only | Lightning **Pay 21 sats** via NWC (`make_invoice` → QR/BOLT11 → settle → lease). Optional Stripe **live** $0.50 Checkout as a secondary card door. Secrets stay in a pay sidecar on `127.0.0.1` — never in the static build or this repo. |
+The public sandbox is **Demo-only**: a simulated L402 walkthrough (402 challenge → 21-sat pay → retry → 200 → play). No real sats move, and there is no Real toggle or card checkout on the public build — GitHub Pages is static and cannot hold NWC or Stripe secrets or settle payments.
 
-GitHub Pages cannot hold NWC or Stripe secrets and **cannot settle Real pay**. The public URL is the concept + simulated Demo only. Real Lightning / live Stripe need the local sidecar below — never imply otherwise in a share post.
+Real Lightning (NWC invoice → settle → lease) and optional Stripe stay in the codebase for **local experiments only**, behind a build flag (`VITE_ENABLE_REAL=1`, a non-secret UI switch). See "Optional: local Real pay" below. Never imply the public URL settles real payments in a share post.
 
 ## Run locally
 
@@ -56,16 +53,16 @@ npm run preview -- --host 0.0.0.0 --port 4173
 
 Dev server: `npm run dev`.
 
-### Optional: Real pay sidecar
+### Optional: local Real pay (not on Pages)
 
-Secrets in shell env only (never `VITE_*`, never commit):
+The Real toggle only appears in a build made with `VITE_ENABLE_REAL=1` (a UI flag, not a secret). Secrets in shell env only (never `VITE_*`, never commit):
 
 ```bash
 # NWC_CONNECTION_STRING=nostr+walletconnect://…
 # STRIPE_SECRET_KEY_TEST=…   # Demo optional Pay $0.50 (test card)
 # STRIPE_SECRET_KEY_LIVE=…   # Real optional Pay $0.50 (card)
 # LIGHTNING_ADDRESS=you@getalby.com   # optional; agent auto-pay only (never in the static site)
-npm run build
+VITE_ENABLE_REAL=1 npm run build
 npx vite preview --host 0.0.0.0 --port 4173 &
 npm run sidecar   # 127.0.0.1:4174 — holds NWC + Stripe secrets
 ```

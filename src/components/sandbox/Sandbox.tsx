@@ -104,6 +104,13 @@ const emptyApp = (): AppState => ({
   audioSrc: null,
 });
 
+/**
+ * Real pay (NWC Lightning / Stripe) needs the local sidecar, which GitHub Pages
+ * cannot host. The shipped public build is Demo-only (simulated L402).
+ * Opt in locally with VITE_ENABLE_REAL=1 (see `npm run preview:real`).
+ */
+const REAL_ENABLED = import.meta.env.VITE_ENABLE_REAL === "1";
+
 export function Sandbox() {
   const [scenario, setScenario] = useState<ScenarioId>("tidal");
   const [mode, setMode] = useState<"demo" | "real">("demo");
@@ -125,7 +132,7 @@ export function Sandbox() {
   const unlockLoggedRef = useRef<Set<AppId>>(new Set());
   const [sidecar, setSidecar] = useState<SidecarHealth & { checking: boolean }>({
     live: false,
-    checking: true,
+    checking: REAL_ENABLED,
   });
   const [pending, setPending] = useState<PendingInvoice | null>(null);
   const [copied, setCopied] = useState(false);
@@ -141,9 +148,11 @@ export function Sandbox() {
 
   useEffect(() => {
     let cancelled = false;
-    void fetchSidecarHealth().then((h) => {
-      if (!cancelled) setSidecar({ ...h, checking: false });
-    });
+    if (REAL_ENABLED) {
+      void fetchSidecarHealth().then((h) => {
+        if (!cancelled) setSidecar({ ...h, checking: false });
+      });
+    }
     return () => {
       cancelled = true;
       pollAbortRef.current?.abort();
@@ -178,6 +187,7 @@ export function Sandbox() {
   // Stripe Checkout return: ?stripe_session_id=…#demo → verify → lease unlock
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    if (!REAL_ENABLED) return;
     const sessionId = params.get("stripe_session_id");
     const cancelledPay = params.get("stripe_cancel") === "1";
     if (cancelledPay) {
@@ -240,11 +250,11 @@ export function Sandbox() {
     scenario === "other" ? "other" : scenario === "agent" ? "agent" : "tidal";
 
   const canPlay = apps[activeApp].paid;
-  const realMode = mode === "real";
-  const liveReady = !!(sidecar.live && sidecar.canReceive);
+  const realMode = REAL_ENABLED && mode === "real";
+  const liveReady = REAL_ENABLED && !!(sidecar.live && sidecar.canReceive);
   const realPayBlocked = realMode && !liveReady;
-  const stripeTestReady = !!sidecar.stripe?.test;
-  const stripeLiveReady = !!sidecar.stripe?.live;
+  const stripeTestReady = REAL_ENABLED && !!sidecar.stripe?.test;
+  const stripeLiveReady = REAL_ENABLED && !!sidecar.stripe?.live;
   const stripeReady = realMode ? stripeLiveReady : stripeTestReady;
   const stripeMode: "test" | "live" = realMode ? "live" : "test";
   const showPayScenarios =
@@ -257,7 +267,7 @@ export function Sandbox() {
         pushLog("info", `${labelFor(app)} already paid for this session.`);
         return;
       }
-      if (mode === "real") {
+      if (realMode) {
         if (!liveReady) {
           pushLog(
             "err",
@@ -383,7 +393,7 @@ export function Sandbox() {
         setBusy(false);
       }
     },
-    [apps, mode, liveReady, pushLog, logUnlockOnce, refreshSidecar],
+    [apps, realMode, liveReady, pushLog, logUnlockOnce, refreshSidecar],
   );
 
 
@@ -566,14 +576,14 @@ export function Sandbox() {
           </h2>
           <p className="body-lg max-w-prose">
             Walk the agent publish path, then pay as TIDAL, another app, or a
-            buyer agent. This public page runs <strong className="font-medium text-mist">Demo</strong>{" "}
-            (simulated L402). Real Lightning ({PRICE_SATS} sats) and optional
-            Stripe ({PRICE_STRIPE_LABEL}) settle only on a local build with a
-            pay sidecar — never on GitHub Pages.
+            buyer agent. This is a <strong className="font-medium text-mist">simulated L402</strong>{" "}
+            walkthrough: the 402 challenge, the {PRICE_SATS}-sat pay, the retry and
+            the unlock are all shown, but no real sats move on this page.
           </p>
         </div>
 
         <div className="mb-7 flex flex-wrap items-center gap-3">
+          {REAL_ENABLED ? (
           <div className="inline-flex rounded-full border border-white/[0.1] bg-ink-soft p-1 shadow-soft">
             <button
               type="button"
@@ -601,6 +611,9 @@ export function Sandbox() {
               Real (local)
             </button>
           </div>
+          ) : (
+            <span className="chip">Demo · simulated L402</span>
+          )}
           <span className="chip">{statusLine}</span>
           <button
             type="button"
@@ -994,8 +1007,7 @@ export function Sandbox() {
         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-tiny text-ink-mute">
           <span className="inline-flex items-center gap-1.5">
             <Wallet className="size-3.5 opacity-70" strokeWidth={1.5} /> Demo =
-            simulated L402 on this page · Real settle = local sidecar only
-            (Lightning {PRICE_SATS} sats, optional Stripe {PRICE_STRIPE_LABEL})
+            simulated L402 · {PRICE_SATS} sats per payer, no real funds move
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Music2 className="size-3.5 opacity-70" strokeWidth={1.5} />{" "}
