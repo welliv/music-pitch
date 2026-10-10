@@ -7,7 +7,7 @@ export function ThreeToOne() {
     <Layout381
       tagline="Three → one"
       heading="Not three products. One agent on rails you already own."
-      description="Block has bitcoin, Lightning, and wallets — and in September 2026 it brought Lightning to x402, the open standard for agent payments. TIDAL has artists and listeners. The TIDAL Music Agent is the glue that turns those pieces into artist-controlled catalog access."
+      description="Block has bitcoin, Lightning, and wallets — and in September 2026 it brought Lightning to x402, the open standard for agent payments. TIDAL has artists and listeners. The Music Agent is the glue that turns those pieces into artist-controlled catalog access."
       bigCard={{
         tagline: "Rail 01",
         icon: Zap,
@@ -42,7 +42,7 @@ export function ThreeToOne() {
       ]}
       footerNote={
         <p className="max-w-2xl border-l-2 border-accent/40 pl-6 text-regular text-mist-dim">
-          Today: <span className="text-mist">TIDAL Music Agent</span> — publish
+          Today: <span className="text-mist">Music Agent</span> — publish
           once, price the link, let stores and agents pay per play.
         </p>
       }

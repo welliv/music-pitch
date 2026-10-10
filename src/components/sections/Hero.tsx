@@ -30,13 +30,19 @@ export function Hero() {
         </div>
         <p className="section-label mb-5">A pitch concept for Block + TIDAL</p>
         <h1 className="display-title mb-7 text-[2.75rem] leading-[1.05] sm:text-[3.5rem] md:text-[4rem] lg:text-[4.25rem]">
-          TIDAL Music Agent on Block’s existing rails
+          A Music Agent on Block’s existing rails
         </h1>
+        <p className="mx-auto mb-5 max-w-prose text-sm uppercase tracking-wide text-mist">
+          Built on Lightning + x402
+        </p>
         <p className="mx-auto max-w-prose body-lg">
-          An artist uses a TIDAL Music Agent to get a Nostr identity, publish
+          An artist uses a Music Agent to get a Nostr identity, publish
           music encrypted to their key, and put the catalog behind a 402 pay
           link. TIDAL, other apps, and agents pay that link — fans never see a
           wallet or a key.
+        </p>
+        <p className="mx-auto mt-4 max-w-prose text-sm text-mist">
+          <strong className="font-medium">Simulated vs real:</strong> this public page is a simulated L402 walkthrough — no real sats move. For music where the artist/rights holder controls master + publishing; concept only.
         </p>
         <p className="mx-auto mt-5 max-w-prose text-small text-ink-mute">
           Proposed concept — not an official TIDAL or Block product.

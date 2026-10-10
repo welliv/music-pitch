@@ -56,7 +56,7 @@ def run(name):
         serif = font([os.path.join(os.path.dirname(__file__), "fonts", "InstrumentSerif-Regular.ttf"),
                       "/usr/share/fonts/truetype/sand-box/google/Noto Serif Display/NotoSerifDisplay-VariableFont_wdth,wght.ttf"], 64)
         sans = font(["/usr/share/fonts/truetype/sand-box/google/Inter/Inter-VariableFont_opsz,wght.ttf"], 20)
-        d.text((72, 150), "TIDAL Music Agent", font=serif, fill=(245, 245, 247))
+        d.text((72, 150), "Music Agent", font=serif, fill=(245, 245, 247))
         d.text((72, 222), "on Block\u2019s existing rails", font=serif, fill=(245, 245, 247))
         d.text((74, 318), "A PITCH CONCEPT  \u00b7  NOSTR KEYS  \u00b7  402 PAY LINK  \u00b7  LIGHTNING", font=sans,
                fill=(150, 255, 190))

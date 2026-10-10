@@ -493,7 +493,7 @@ export function Sandbox() {
     if (busy) return;
     setBusy(true);
     try {
-      pushLog("info", "TIDAL Music Agent: create Nostr identity");
+      pushLog("info", "Music Agent: create Nostr identity");
       await sleep(350);
       const pubkey = `npub1${randHex(16)}`;
       pushLog("ok", "Nostr keys ready (demo)", pubkey);
@@ -769,7 +769,7 @@ export function Sandbox() {
                 {scenario === "artist" && (
                   <>
                     <p>
-                      Simulate the TIDAL Music Agent onboarding path: Nostr
+                      Simulate the Music Agent onboarding path: Nostr
                       identity, encrypt, publish, set {PRICE_SATS} sats on the
                       pay link.
                     </p>

@@ -1,5 +1,5 @@
 /**
- * Local pay sidecar for the TIDAL Music Agent pitch (Real bitcoin + Stripe card).
+ * Local pay sidecar for the Music Agent pitch (Real bitcoin + Stripe card).
  *
  * Secrets (env ONLY — never disk, never logs, never dist, never VITE_*):
  *   NWC_CONNECTION_STRING, STRIPE_SECRET_KEY_TEST, STRIPE_SECRET_KEY_LIVE, LIGHTNING_ADDRESS (optional, agent auto-pay)
@@ -313,7 +313,7 @@ async function createChallenge(app, song) {
   const tx = await withTimeout(
     nwc().makeInvoice({
       amount: PRICE_SATS * 1000,
-      description: `TIDAL Music Agent pitch · ${SONGS[song].title} · ${app} · ${PRICE_SATS} sats`,
+      description: `Music Agent pitch · ${SONGS[song].title} · ${app} · ${PRICE_SATS} sats`,
       expiry: INVOICE_EXPIRY_S,
     }),
     15_000,
@@ -362,7 +362,7 @@ async function agentPay(app, song) {
   const ln = new LightningAddress(LIGHTNING_ADDRESS);
   await withTimeout(ln.fetch(), 10_000, "lnurl");
   const inv = await withTimeout(
-    ln.requestInvoice({ satoshi: PRICE_SATS, comment: `TIDAL Music Agent pitch · ${SONGS[song].title}` }),
+    ln.requestInvoice({ satoshi: PRICE_SATS, comment: `Music Agent pitch · ${SONGS[song].title}` }),
     10_000,
     "lnurl invoice",
   );

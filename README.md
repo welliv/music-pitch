@@ -1,4 +1,4 @@
-# TIDAL Music Agent on Block’s existing rails
+# A Music Agent on Block’s existing rails
 
 **[Live pitch](https://welliv.github.io/music-pitch/)** · Proposed concept — not an official TIDAL or Block product.
 

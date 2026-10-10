@@ -18,7 +18,7 @@ const steps: {
     icon: KeyRound,
     accent: "nostr",
     title: "Artist opens the agent",
-    body: "TIDAL Music Agent creates or manages Nostr keys — identity the artist controls.",
+    body: "Music Agent creates or manages Nostr keys — identity the artist controls.",
   },
   {
     value: "step-02",
