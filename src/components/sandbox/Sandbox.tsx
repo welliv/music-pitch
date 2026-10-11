@@ -14,6 +14,7 @@ import {
   Radio,
   Sparkles,
   Wallet,
+  ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -126,6 +127,11 @@ export function Sandbox() {
     pubkey: "",
     price: PRICE_SATS,
   });
+  const [proof, setProof] = useState<{
+    sha256: string;
+    eventId: string;
+    timestamp: string;
+  } | null>(null);
   const logId = useRef(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const busyRef = useRef(false);
@@ -506,6 +512,30 @@ export function Sandbox() {
         `${PAY_LINK} · ${PRICE_SATS} sats`,
       );
       setArtist({ published: true, pubkey, price: PRICE_SATS });
+      // Proof of release (demo): real SHA-256 of the master, simulated sign + anchor
+      pushLog("info", "Proof of release: hash master (SHA-256)");
+      let sha256 = "";
+      try {
+        const buf = await (await fetch(SONG_URL)).arrayBuffer();
+        const digest = await crypto.subtle.digest("SHA-256", buf);
+        sha256 = Array.from(new Uint8Array(digest), (b) =>
+          b.toString(16).padStart(2, "0"),
+        ).join("");
+        pushLog("ok", "Master hashed in browser", sha256);
+      } catch {
+        sha256 = randHex(32);
+        pushLog("info", "Hash unavailable — using placeholder (demo)", sha256);
+      }
+      await sleep(300);
+      const eventId = randHex(32);
+      pushLog("ok", "Release event signed with artist key (simulated)", eventId);
+      await sleep(400);
+      pushLog(
+        "ok",
+        "Anchored to Bitcoin via OpenTimestamps · NIP-03 (simulated)",
+        "No real anchoring happens on this public demo",
+      );
+      setProof({ sha256, eventId, timestamp: new Date().toISOString() });
     } finally {
       setBusy(false);
     }
@@ -543,6 +573,7 @@ export function Sandbox() {
     setBusy(false);
     setApps({ tidal: emptyApp(), other: emptyApp(), agent: emptyApp() });
     setArtist({ published: false, pubkey: "", price: PRICE_SATS });
+    setProof(null);
     setLogs([]);
     pushLog("info", "Session reset — each app must pay again");
   };
@@ -794,6 +825,32 @@ export function Sandbox() {
                     <Button disabled={busy || artist.published} onClick={publishArtist}>
                       {artist.published ? "Published" : "Run artist agent"}
                     </Button>
+                    {proof && (
+                      <div className="rounded-xl border border-white/[0.06] bg-black/40 px-4 py-3.5">
+                        <div className="mb-2.5 flex items-center gap-2 text-mist">
+                          <ShieldCheck className="size-4" />
+                          <span className="font-medium">Proof of release</span>
+                          <span className="chip ml-auto">anchored (simulated)</span>
+                        </div>
+                        <dl className="grid grid-cols-[4.5rem_1fr] gap-x-3 gap-y-2 font-mono text-tiny">
+                          <dt className="text-ink-mute">track</dt>
+                          <dd className="truncate text-mist">{SONG_TITLE}</dd>
+                          <dt className="text-ink-mute">sha256</dt>
+                          <dd className="truncate text-mist" title={proof.sha256}>
+                            {proof.sha256.slice(0, 16)}…{proof.sha256.slice(-8)}
+                          </dd>
+                          <dt className="text-ink-mute">npub</dt>
+                          <dd className="truncate text-mist">{artist.pubkey}</dd>
+                          <dt className="text-ink-mute">time</dt>
+                          <dd className="truncate text-mist">{proof.timestamp}</dd>
+                          <dt className="text-ink-mute">status</dt>
+                          <dd className="text-mist">anchored (simulated) · NIP-03 / OpenTimestamps</dd>
+                        </dl>
+                        <p className="mt-2.5 text-tiny text-ink-mute">
+                          Demo only: hash is real, signing and Bitcoin anchoring are simulated. Evidence the master existed under this key by a date — not proof of authorship or ownership.
+                        </p>
+                      </div>
+                    )}
                   </>
                 )}
 

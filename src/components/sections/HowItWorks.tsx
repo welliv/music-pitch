@@ -27,7 +27,7 @@ const steps: {
     icon: Library,
     accent: "accent",
     title: "Publish encrypted catalog",
-    body: "Tracks land on a TIDAL Nostr music marketplace, encrypted to the artist’s key.",
+    body: "Tracks land on a TIDAL Nostr music marketplace, encrypted to the artist’s key. Proof of release: tamper-proof evidence the master existed under the artist’s key by a date — not proof of authorship or legal ownership.",
   },
   {
     value: "step-03",
